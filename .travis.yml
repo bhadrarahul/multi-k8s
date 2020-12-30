@@ -22,3 +22,15 @@ after_success:
   - docker push bhadrarahul/multi-nginx
   - docker push bhadrarahul/multi-server
   - docker push bhadrarahul/multi-worker
+  
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-west-1'
+  app: 'multi-docker'
+  env: 'MultiDocker-env'
+  bucket_name: 'elasticbeanstalk-us-west-1-542646078692'
+  bucket_path: 'docker-multi'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
